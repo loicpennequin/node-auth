@@ -1,0 +1,20 @@
+{
+  "name": "boilerplate_node_angular_bootstrap",
+  "version": "1.0.0",
+  "description": "boilerplate pour application nodeJS-angular1-Bootstrap",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Loïc Pennequin",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "mysql": "^2.14.1"
+  }
+}
