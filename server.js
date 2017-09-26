@@ -33,7 +33,8 @@ const session = require('express-session'),
     App config
     ============================================================================= */
 app.disable('x-powered-by');
-app.use(express.static('public'));
+app.use(express.static('src'));
+app.use(express.static('vendor'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 if(process.env.NODE_ENV === 'development'){
