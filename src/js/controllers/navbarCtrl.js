@@ -13,4 +13,25 @@ app.controller('navbarCtrl', function($scope,authFactory){
   $scope.logout = function(){
     authFactory.logout();
   }
+
+  $scope.dropdown = false;
+  $scope.toggleDropdown = function(){
+    $scope.dropdown = !$scope.dropdown;
+  }
+
+  $scope.showDropdown = function(){
+    if ($scope.dropdown === true) {
+      return {
+        display: "block",
+        position : "absolute",
+        backgroundColor: '#222',
+        top: '100%',
+        width: '100%'
+      }
+    }else{
+      return {
+        display: "none"
+      }
+    }
+  }
 })
