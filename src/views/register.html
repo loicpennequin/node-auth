@@ -1,9 +1,9 @@
 <div ng-include="'views/components/navbar.html'"></div>
 
-<h1 class="text-center">Register</h1>
 <main class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
+      <h1 class="text-center">Register</h1>
 
       <div ng-repeat="error in registrationErrors" ng-if="registrationHasErrors" class="alert alert-danger">
         {{error.msg}}
@@ -13,7 +13,7 @@
         Registration successful.
       </div>
 
-      <form name="registerForm" ng-submit="register()" novalidate>
+      <form class="clearfix" name="registerForm" ng-submit="register()" novalidate>
 
         <div class="form-group">
           <label>Username</label>

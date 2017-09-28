@@ -23,13 +23,24 @@ html, body {
     text-shadow: 1px 4px 6px #eee, 0 0 0 #000, 1px 4px 6px #eee; }
 
 main {
-  background: linear-gradient(#eee, #ddd);
+  background: linear-gradient(#fff, #eee);
   padding: 35px; }
+  main h1 {
+    background-color: #fff;
+    border-bottom: solid 1px #555;
+    padding-bottom: 10px;
+    margin: 0; }
   main .well {
     font-size: 1.3em;
     border: solid #bbb 1px; }
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover {
   color: #a03c32; }
+
+form {
+  margin-top: 15px;
+  padding: 15px;
+  border: solid 1px #aaa;
+  background-color: #cccccf; }
 
 /*# sourceMappingURL=main.css.map */
