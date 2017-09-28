@@ -1,6 +1,6 @@
-/*********************************************************************
-******************************project name****************************
-******************************author*********************************/
+/**********************************************************************
+******************************Node Auth********************************
+******************************Loïc Pennequin***************************/
 
 'use strict';
 
@@ -30,7 +30,7 @@ const express = require('express'),
     Configure session
     ============================================================================= */
 const session = require('express-session'),
-      sessionParams = session({secret: "gzjsiogjeog", resave : false, saveUninitialized : false}),
+      sessionParams = session({secret: "gzjsiogjeog", resave : false, saveUninitialized : false, cookie:{secure: true}}),
       passport = require('passport'),
       LocalStrategy = require('passport-local').Strategy;
 
