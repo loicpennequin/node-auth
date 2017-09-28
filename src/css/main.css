@@ -7,9 +7,29 @@
 html, body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(white, #ddd); }
+  background: linear-gradient(#333, #222); }
 
 .jumbotron {
-  background: linear-gradient(130DEG, #666, white); }
+  background: linear-gradient(45deg, #eee, #bbb); }
+  @media screen and (min-width: 1200px) {
+    .jumbotron {
+      min-height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center; } }
+  .jumbotron h1 {
+    font-weight: bold;
+    color: rgba(160, 60, 50, 0.8);
+    text-shadow: 1px 4px 6px #eee, 0 0 0 #000, 1px 4px 6px #eee; }
+
+main {
+  background: linear-gradient(#eee, #ddd);
+  padding: 35px; }
+  main .well {
+    font-size: 1.3em;
+    border: solid #bbb 1px; }
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover {
+  color: #a03c32; }
 
 /*# sourceMappingURL=main.css.map */
