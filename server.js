@@ -30,7 +30,7 @@ const express = require('express'),
     Configure session
     ============================================================================= */
 const session = require('express-session'),
-      sessionParams = session({secret: "gzjsiogjeog", resave : false, saveUninitialized : false, cookie:{secure: true}}),
+      sessionParams = session({secret: "gzjsiogjeog", resave : false, saveUninitialized : false}),
       passport = require('passport'),
       LocalStrategy = require('passport-local').Strategy;
 
@@ -69,8 +69,6 @@ passport.use(new LocalStrategy(
         if(res !== true) return done(null, false, { message: 'Incorrect password.' });
         else return done(null, user.id);
       });
-      // if (user.password !== password) done(null, false, { message: 'Incorrect password.' })
-      // return done(null, user.id);
     });
   }
 ));

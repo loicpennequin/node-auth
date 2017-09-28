@@ -32,6 +32,7 @@ app.controller('mainCtrl', function($scope, $timeout, $location, authFactory){
   $scope.signIn = function(){
     authFactory.signIn($scope.auth)
     .then(function(response){
+      console.log(response);
       $location.path('/profile')
     }, function(error){
       $scope.loginHasErrors = true;
