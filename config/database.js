@@ -23,7 +23,7 @@ database.connect((error)=>{
 })
 
 setInterval(function () {
-    db.query('SELECT 1');
+    database.query('SELECT 1');
 }, 5000);
 
 
