@@ -1,5 +1,7 @@
 'use strict'
 
+const mysql=require('mysql');
+
 /*  =============================================================================
     Database config
     ============================================================================= */
@@ -19,3 +21,6 @@ database.connect((error)=>{
     }
     console.log('Connection to MySQL successful...')
 })
+
+
+module.exports= database;

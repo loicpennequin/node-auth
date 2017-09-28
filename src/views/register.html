@@ -1,0 +1,82 @@
+<div ng-include="'views/components/navbar.html'"></div>
+
+<h1 class="text-center">Register</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div ng-repeat="error in registrationErrors" ng-if="registrationHasErrors" class="alert alert-danger">
+        {{error.msg}}
+      </div>
+
+      <div class="alert alert-success" ng-if="registrationSuccess">
+        Registration successful.
+      </div>
+
+      <form name="registerForm" ng-submit="register()" novalidate>
+
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text"
+                 class="form-control"
+                 name="username"
+                 ng-model="newUser.username"
+                 ng-minlength="4"
+                 ng-maxlength="20"
+                 required>
+          <div ng-if="registerForm.username.$dirty" ng-messages="registerForm.username.$error">
+            <div ng-message="minlength" class="alert alert-danger">
+              Username must be at least 4 characters long.
+            </div>
+            <div ng-message="maxlength" class="alert alert-danger">
+              Username must be under 20 characters long.
+            </div>
+            <div ng-message="required" class="alert alert-danger">
+              Username is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password"
+                 class="form-control"
+                 name="password"
+                 ng-model="newUser.password"
+                 ng-minlength="6"
+                 ng-maxlength="20"
+                 required>
+         <div ng-if="registerForm.password.$dirty" ng-messages="registerForm.password.$error">
+           <div ng-message="minlength" class="alert alert-danger">
+             Password must be at least 6 characters long.
+           </div>
+           <div ng-message="maxlength" class="alert alert-danger">
+             Password must be under 20 characters long.
+           </div>
+           <div ng-message="required" class="alert alert-danger">
+             Password is required.
+           </div>
+         </div>
+        </div>
+
+        <div class="form-group">
+          <label>Confirm password</label>
+          <input type="password"
+                 class="form-control"
+                 name="passwordmatch"
+                 ng-model="newUser.passwordMatch"
+                 >
+          <div ng-if="registerForm.passwordmatch.$dirty" ng-messages="registerForm.passwordmatch.$error">
+            <div class="alert alert-danger" ng-if="newUser.password !== newUser.passwordMatch">
+              Your passwords don't match.
+            </div>
+          </div>
+        </div>
+
+        <input class="btn btn-primary pull-right" type="submit" value="Register">
+
+      </form>
+    </div>
+  </div>
+</div>
+<div ng-include="'views/components/footer.html'"></div>

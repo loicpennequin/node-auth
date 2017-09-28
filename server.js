@@ -15,6 +15,9 @@ const bodyParser = require('body-parser'),
       cookieParser = require('cookie-parser'),
       path = require('path'),
       mysql = require('mysql'),
+      db = require("./config/database.js"),
+      flash = require('connect-flash'),
+      bcrypt = require('bcrypt'),
       fs = require('fs');
 
 /*  =============================================================================
@@ -27,24 +30,50 @@ const express = require('express'),
     Configure session
     ============================================================================= */
 const session = require('express-session'),
-      sessionParams = session({secret: "gzjsiogjeog", resave : false, saveUninitialized : true});
+      sessionParams = session({secret: "gzjsiogjeog", resave : false, saveUninitialized : false}),
+      passport = require('passport'),
+      LocalStrategy = require('passport-local').Strategy;
 
 /*  =============================================================================
     App config
     ============================================================================= */
 app.disable('x-powered-by');
-app.use(express.static('src'));
-app.use(express.static('vendor'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-if(process.env.NODE_ENV === 'development'){
-    app.use(require(path.join(__dirname, '/app/middlewares/allowCORS.js')));
-};
+app.use(cookieParser());
+app.use(sessionParams);
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static('src'));
+app.use(express.static('vendor'));
 
 /*  =============================================================================
     Configure Routes
     ============================================================================= */
 require(path.join(__dirname, '/app/routeHandler/router.js'))(app);
+
+
+/*  =============================================================================
+    Passport config
+    ============================================================================= */
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    let sql = `SELECT id, username, password FROM users WHERE username = '${username}'`;
+    let query = db.query(sql, (err, result)=>{
+      if (err) return done(err) ;
+      let user = result[0];
+      if (!user) return done(null, false, { message: 'Incorrect username.' }) ;
+
+      bcrypt.compare(password, user.password, function(err, res) {
+        if(res !== true) return done(null, false, { message: 'Incorrect password.' });
+        else return done(null, user.id);
+      });
+      // if (user.password !== password) done(null, false, { message: 'Incorrect password.' })
+      // return done(null, user.id);
+    });
+  }
+));
 
 /*  =============================================================================
     Server start

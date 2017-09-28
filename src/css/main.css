@@ -6,6 +6,10 @@
 
 html, body {
   margin: 0;
-  min-height: 100%; }
+  min-height: 100vh;
+  background: linear-gradient(white, #ddd); }
+
+.jumbotron {
+  background: linear-gradient(130DEG, #666, white); }
 
 /*# sourceMappingURL=main.css.map */
