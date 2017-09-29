@@ -41,10 +41,10 @@
 .feed h2 {
   color: #bbb; }
 .feed .panel {
-  transition: all 0.7s; }
+  transition: transform 0.5s ease-in-out, opacity 0.5s linear; }
 .feed .panel.ng-enter, .feed .panel.ng-leave.ng-leave-active {
   opacity: 0;
-  transform: translateX(-100%) scale(0.2);
+  transform: translateX(-50%) scale(0.2);
   transform-origin: bottom left; }
 .feed .panel.ng-leave, .feed .panel.ng-enter.ng-enter-active {
   opacity: 1;

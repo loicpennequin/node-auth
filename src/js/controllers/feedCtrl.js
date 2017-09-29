@@ -2,6 +2,8 @@ app.controller('feedCtrl', function($scope, $timeout){
   $scope.appName = "NodeAuth";
   $scope.feed = []
   $scope.preload = true;
+  // $scope.commentError = false;
+  // $scope.showComments = false;
 
   $timeout(()=>{$scope.preload = false}, 1500)
   $scope.getFeed = function(){
@@ -24,17 +26,28 @@ app.controller('feedCtrl', function($scope, $timeout){
     })
   };
 
-  $scope.postComment = function(status){
-    $scope.httpRequest('post', '/api/comments', {
-      user_id: $scope.user.id,
-      status_id: status.id,
-      body: this.newComment
-    }).then(function(){
-      this.newComment = "";
-      $scope.getFeed();
-    }, function(error){
-      console.log(error);
-    })
+  $scope.postComment = function(model, status){
+    if (!this.newComment){
+      model.commentError = true;
+    }else{
+      $scope.httpRequest('post', '/api/comments', {
+        user_id: $scope.user.id,
+        status_id: status.id,
+        body: this.newComment
+      }).then(function(response){
+        model.newComment = "";
+        status.comments = response[0].comments;
+        status.comments = JSON.parse("[" + status.comments + "]");
+        status.comments.forEach(function(comment){
+          comment.body = decodeURI(comment.body);
+          comment.created_at = new Date(comment.created_at)
+        })
+        model.commentError = false;
+        model.$parent.showComments = true;
+      }, function(error){
+        console.log(error);
+      })
+    }
   };
 
   $scope.deleteComment = function(id){
