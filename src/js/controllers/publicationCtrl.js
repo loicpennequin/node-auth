@@ -6,7 +6,6 @@ app.controller('publicationCtrl', function($scope){
     if (!$scope.newStatus){
       $scope.statusError = true;
     }else{
-      $scope.newStatus = "";
       $scope.httpRequest('post', '/api/publications/status', {
         user_id: $scope.user.id,
         body: $scope.newStatus
