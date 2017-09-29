@@ -32,6 +32,7 @@ module.exports.getFeed = function(req, res, next){
     LEFT JOIN users AS uc
       ON c.user_id = uc.id
   GROUP BY s.id
+  ORDER BY s.created_at DESC
   LIMIT 10
   `;
   let query = db.query(sql, (err, result)=>{

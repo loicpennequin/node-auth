@@ -4,7 +4,6 @@ app.controller('securedViewCtrl', function($scope, $location, authFactory){
     if (response.data.loggedIn === true){
       $scope.loggedIn = true;
       $scope.user = response.data.data[0];
-      console.log($scope.user);
     } else {
       $location.path('/login')
     }

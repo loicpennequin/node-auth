@@ -64,7 +64,6 @@ app.controller('mainCtrl', function($scope, $q, $timeout, $location, authFactory
 
   ////////Event Broadcasting///////
   $scope.$on('newStatusPosted', (event, status)=>{
-    console.log(status);
     $scope.$broadcast('newStatusRecieved', status);
   });
 
