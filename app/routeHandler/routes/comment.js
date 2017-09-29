@@ -8,6 +8,7 @@ module.exports.add = function(req, res, next){
     res.sendStatus(401);
   else{
     req.body.created_at = new Date();
+    req.body.body = encodeURI(req.body.body);
     let sql = `INSERT INTO comments SET ?`,
         post = req.body;
     let query = db.query(sql, post, (err, result)=>{

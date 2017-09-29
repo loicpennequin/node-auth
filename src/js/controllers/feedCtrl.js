@@ -7,13 +7,13 @@ app.controller('feedCtrl', function($scope, $timeout){
   $scope.getFeed = function(){
     $scope.httpRequest('get', '/api/feed').then(function(response){
       $scope.feed = response;
-      console.log($scope.feed[0].comments);
       $scope.feed.forEach(function(feed){
         if (feed.comments === null){
           delete feed.comments
         }else{
           feed.comments = JSON.parse("[" + feed.comments + "]");
           feed.comments.forEach(function(comment){
+            comment.body = decodeURI(comment.body);
             comment.created_at = new Date(comment.created_at)
           })
         }
