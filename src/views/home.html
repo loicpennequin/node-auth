@@ -3,11 +3,8 @@
 <main class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <div class="well">
-        <p>This is a demonstration of a register/authentication system using AngularJs, nodeJS, Express, PassportJS and MySQL. Once registered and logged in you will be redirected to your profile, where you can't actually do anything, this app only covers the authentication process.<p>
-        <a href="https://github.com/loicpennequin/node-auth"><i class="fa fa-arrow-circle-o-right" aria-hidden="true">View source code on GitHub</i>
-        </a>
-      </div>
+      <div ng-include="'views/components/addpublication.html'"></div>
+      <div ng-include="'views/components/feed.html'"></div>
     </div>
   </div>
 </main>

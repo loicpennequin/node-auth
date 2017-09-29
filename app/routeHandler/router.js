@@ -8,7 +8,9 @@ const db = require('../../config/database')
 /*  =============================================================================
     Route Paths
     ============================================================================= */
-let auth = require('./routes/auth.js');
+let auth = require('./routes/auth.js'),
+    status = require('./routes/status.js'),
+    comment = require('./routes/comment.js');
 
 /*  =============================================================================
     Passport Serialization
@@ -25,17 +27,20 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+/*  =============================================================================
+    Routes
+    ============================================================================= */
 module.exports = function(app){
 
-/*  =============================================================================
-    Authentication
-    ============================================================================= */
+  app.post('/auth/register', auth.registerCheck, auth.register);
+  app.post('/auth/signin',passport.authenticate('local', {successRedirect:"/",Successfailure:"/"}));
+  app.get('/auth/loggedin', auth.isLoggedIn);
+  app.get('/auth/logout', auth.logout);
 
-  app.post('/auth/register', auth.registerCheck, auth.register)
-  app.post('/auth/signin',passport.authenticate('local', {
-    successRedirect:"/",
-    successfailure:"/"
-  }))
-  app.get('/auth/loggedin', auth.isLoggedIn)
-  app.get('/auth/logout', auth.logout)
+  app.get('/api/feed', status.getFeed);
+
+  app.post('/api/comments', comment.add)
+  app.delete('/api/comments/:id', comment.delete)
+
+  app.post('/api/publications/status', status.add)
 };

@@ -1,5 +1,28 @@
-app.controller('mainCtrl', function($scope, $timeout, $location, authFactory){
+app.controller('mainCtrl', function($scope, $q, $timeout, $location, authFactory, httpFactory){
   $scope.appName = "NodeAuth";
+
+  //////////////Login check////////////////////
+  authFactory.isLoggedIn()
+  .then(function(response){
+    if (response.data.loggedIn === true){
+      $scope.loggedIn = true;
+      $scope.user = response.data.data[0];
+    }
+  }, function(error){
+    $scope.loggedIn = false;
+  })
+
+  /////////////Http Request for child controllers///////
+  $scope.httpRequest = function(type, path, data){
+    let deferred = $q.defer()
+    httpFactory.request(type, path, data)
+    .then(function(response){
+      deferred.resolve(response)
+    }, function(error){
+      deferred.reject(error)
+    })
+    return deferred.promise
+  };
 
   //////////////Registration//////////
   $scope.newUser = {};
@@ -32,11 +55,18 @@ app.controller('mainCtrl', function($scope, $timeout, $location, authFactory){
   $scope.signIn = function(){
     authFactory.signIn($scope.auth)
     .then(function(response){
-      console.log(response);
-      $location.path('/profile')
+      $location.path('/')
     }, function(error){
       $scope.loginHasErrors = true;
     })
   }
+
+
+  ////////Event Broadcasting///////
+  $scope.$on('newStatusPosted', (event, status)=>{
+    console.log(status);
+    $scope.$broadcast('newStatusRecieved', status);
+  });
+
 
 });

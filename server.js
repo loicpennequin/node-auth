@@ -30,7 +30,7 @@ const express = require('express'),
     Configure session
     ============================================================================= */
 const session = require('express-session'),
-      sessionParams = session({secret: "gzjsiogjeog", resave : false, saveUninitialized : false}),
+      sessionParams = session({secret: "gzjsiogjeog", name: 'sessionId', resave : false, saveUninitialized : false}),
       passport = require('passport'),
       LocalStrategy = require('passport-local').Strategy;
 

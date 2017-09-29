@@ -1,0 +1,37 @@
+.feed
+  h2
+    color: #bbb
+  .panel
+    transition: all 0.7s
+  .panel.ng-enter, .panel.ng-leave.ng-leave-active
+    opacity: 0
+    transform: translateX(-100%) scale(0.2)
+    transform-origin: bottom left
+  .panel.ng-leave, .panel.ng-enter.ng-enter-active
+    opacity: 1
+    transform: none
+  .panel-default
+    .panel-heading
+      background-color: #428bca
+      color: $white
+      font-size: 1.1em
+    a
+      color: $dark
+      font-weight: bold
+      &:hover
+        text-decoration: none
+        color: $white
+    .status-date
+      font-size: 0.8em
+
+
+.comment
+  padding: 10px
+  .well
+    margin-bottom: 0
+.delete-comment
+  background-color: transparent
+  border: none
+  filter: brightness(150%)
+  &:hover
+    filter: none

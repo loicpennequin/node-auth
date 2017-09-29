@@ -1,0 +1,36 @@
+
+.jumbotron
+  background: url('../assets/header-bg.jpg'), linear-gradient(white, black)
+  background-blend-mode: screen
+  background-size: cover
+  background-position: center
+  margin-bottom: 0
+  padding-bottom: 0
+
+  @media screen and (min-width: 1200px)
+    min-height: 300px
+    display: flex
+    justify-content: center
+    // align-items: center
+    flex-direction: column
+  h1
+    font-weight: bold
+    color: rgba(160,60,50, 0.8)
+    text-shadow: 1px 4px 6px $white, 0 0 0 #000, 1px 4px 6px $white
+  .title-text
+    font-size: 1.4em
+    color: $white
+    width: 55%
+    padding: 30px
+    @media screen and (max-width: 767px)
+      width: 100%
+      padding: 0
+
+    span
+      background-color: rgba(0,0,0,0.5)
+      @media screen and (max-width: 767px)
+        font-size: 0.8em
+      @media screen and (min-width: 769px)
+        line-height: 2
+    a:hover
+      filter: brightness(150%)

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse" ng-controller="navbarCtrl">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="navbarCtrl">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" ng-click="toggleDropdown()">
@@ -9,14 +9,14 @@
       </button>
       <a class="navbar-brand" href="#!/">Home</a>
     </div>
-    <div class="collapse navbar-collapse" ng-style="showDropdown()">
+    <div class="collapse navbar-collapse navbar-right" ng-style="showDropdown()">
       <ul class="nav navbar-nav">
         <li ng-if="!loggedIn"><a href="#!/register"><i class="fa fa-pencil"></i>&nbsp;
 Register</a></li>
         <li ng-if="!loggedIn"><a href="#!/login"><i class="fa fa-user"></i>&nbsp;Login</a></li>
+        <li ng-if="loggedIn" style="padding-top:15px;padding-bottom:15px; color: #888">Hello, {{ user.username }}</li>
         <li ng-if="loggedIn"><a href="/" ng-click="logout()"><i class="fa fa-power-off"></i>&nbsp;Logout</a></li>
         <li ng-if="loggedIn"><a href="#!/profile"><i class="fa fa-user"></i>&nbsp;Profile</a></li>
       </ul>
   </div>
 </nav>
-<br><br>

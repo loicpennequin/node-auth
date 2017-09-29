@@ -1,0 +1,50 @@
+<div class="feed" ng-class="{'preload' : preload}" ng-controller="feedCtrl">
+  <h2>Latest Publications</h2>
+  <div class="panel panel-default" ng-repeat="status in feed | orderBy: '-created_at'">
+
+    <div class="panel-heading">
+      <h4><a href="#">{{ status.username }}</a> posted a status</span></h4>
+      <span class=" status-date">{{status.created_at | date : 'MMM dd, H:mm' }}</span>
+    </div>
+
+    <div class="panel-body">
+      <p class="well">{{ status.body }}</p>
+
+      <button class="btn btn-default" ng-click="showComments = !showComments">
+        <i class="fa fa-comments" aria-hidden="true"></i>&nbsp;
+        {{status.comments.length}}comments
+      </button>
+      <br>
+      <br>
+
+      <form name="addCommentForm"
+            class="form-inline"
+            ng-if="loggedIn"
+            ng-submit="postComment(status)">
+        <div class="form-group">
+          <input type="text"
+                 class="form-control"
+                 placeholder="your comment(max.255 characters)"
+                 ng-model="newComment">
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Post comment">
+        </div>
+      </form>
+
+      <div ng-if="showComments" >
+        <div class="comment" ng-repeat="c in status.comments" | orderBy: '-created_at'>
+          <h4>
+            {{ c.author }}
+            <button class="text-danger pull-right delete-comment"
+                    ng-if="user.username === c.author "
+                    ng-click="deleteComment(c.id)">x</button>
+          </h4>
+          <div class='well'>{{ c.body }}</div>
+          <div class="pull-right">{{ c.created_at | date : 'dd/MM/yyyy,H:mm' }}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

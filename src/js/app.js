@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ["ngRoute", "ngMessages"]);
+var app = angular.module('myApp', ["ngRoute", "ngAnimate", "ngMessages"]);
 
 app.config(function($routeProvider, $httpProvider){
   $routeProvider

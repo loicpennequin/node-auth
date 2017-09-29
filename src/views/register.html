@@ -3,7 +3,6 @@
 <main class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h1 class="text-center">Register</h1>
 
       <div ng-repeat="error in registrationErrors" ng-if="registrationHasErrors" class="alert alert-danger">
         {{error.msg}}
@@ -12,8 +11,9 @@
       <div class="alert alert-success" ng-if="registrationSuccess">
         Registration successful.
       </div>
+      <h1 class="text-center">Register</h1>
 
-      <form class="clearfix" name="registerForm" ng-submit="register()" novalidate>
+      <form class="clearfix form" name="registerForm" ng-submit="register()" novalidate>
 
         <div class="form-group">
           <label>Username</label>
