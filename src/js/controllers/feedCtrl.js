@@ -7,7 +7,7 @@ app.controller('feedCtrl', function($scope, $timeout){
   $scope.getFeed = function(){
     $scope.httpRequest('get', '/api/feed').then(function(response){
       $scope.feed = response;
-      console.log($scope.Feed.comments);
+      console.log($scope.feed[0].comments);
       $scope.feed.forEach(function(feed){
         if (feed.comments === null){
           delete feed.comments
