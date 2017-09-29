@@ -26,19 +26,25 @@ module.exports.register = function(req, res){
   if (!errors.isEmpty()){
     return res.status(422).json({ errors: errors.mapped() });
   }
-  bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-    let post = {
-      username : req.body.username,
-      password : hash
-    };
-    let sql = "INSERT INTO users SET ?",
-        query = db.query(sql, post, (err, result)=>{
-          if (err){
-            throw err
-          }
-          res.send('registration successful')
+  let sql = `SELECT username FROM users WHERE username="${req.body.username}"`;
+  let query = db.query(sql, (err, result)=>{
+    if (err) throw err;
+    if (result.length > 0){
+      return res.status(422).json({ errors: [{msg:'This username already exists'}] });
+    }
+    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+      let post = {
+        username : req.body.username,
+        password : hash
+      };
+      let sql = "INSERT INTO users SET ?",
+      query = db.query(sql, post, (err, result)=>{
+        if (err) throw err;
+
+        res.send('registration successful')
       });
-  });
+    });
+  })
 };
 
 module.exports.isLoggedIn = function(req, res, next){
