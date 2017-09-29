@@ -10,4 +10,16 @@ app.controller('securedViewCtrl', function($scope, $location, authFactory){
   }, function(error){
     $scope.loggedIn = false;
   })
+
+  /////////////Http Request for child controllers///////
+  $scope.httpRequest = function(type, path, data){
+    let deferred = $q.defer()
+    httpFactory.request(type, path, data)
+    .then(function(response){
+      deferred.resolve(response)
+    }, function(error){
+      deferred.reject(error)
+    })
+    return deferred.promise
+  };
 });

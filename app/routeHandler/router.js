@@ -10,7 +10,8 @@ const db = require('../../config/database')
     ============================================================================= */
 let auth = require('./routes/auth.js'),
     status = require('./routes/status.js'),
-    comment = require('./routes/comment.js');
+    comment = require('./routes/comment.js'),
+    avatar = require('./routes/avatar.js');
 
 /*  =============================================================================
     Passport Serialization
@@ -43,4 +44,6 @@ module.exports = function(app){
   app.delete('/api/comments/:id', comment.delete)
 
   app.post('/api/publications/status', status.add)
+
+  app.get('/api/avatar', avatar.getAll);
 };

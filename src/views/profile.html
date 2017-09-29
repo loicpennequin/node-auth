@@ -1,14 +1,19 @@
-<div ng-include="'views/components/navbar.html'"></div>
-<main class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h1 class="text-center">Hello {{user.username}}</h1>
-      <div class="well">
-        <p>This is your profile page. This is a good starter point for a new app project and you can now start building your dashboard, profile page, whatever you want ! </p>
-        <a href="https://github.com/loicpennequin/node-auth"><i class="fa fa-arrow-circle-o-right" aria-hidden="true">View source code on GitHub</i>
-        </a>
+<div ng-controller="profileCtrl">
+  <div ng-include="'views/components/navbar.html'"></div>
+  <main class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1 class="text-center">Hello {{user.username}}</h1>
+        <div class="well">
+          <p>This is your profile page. This is a good starter point for a new app project and you can now start building your dashboard, profile page, whatever you want ! </p>
+          <a href="https://github.com/loicpennequin/node-auth"><i class="fa fa-arrow-circle-o-right" aria-hidden="true">View source code on GitHub</i>
+          </a>
+        </div>
+        <div class="Select your avatar">
+
+        </div>
       </div>
     </div>
-  </div>
-</main>
-<div ng-include="'views/components/footer.html'"></div>
+  </main>
+  <div ng-include="'views/components/footer.html'"></div>
+</div>
