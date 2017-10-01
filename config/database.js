@@ -23,10 +23,10 @@ database.connect((error)=>{
     console.log('Connection to MySQL successful...')
 })
 
-// setInterval(function () {
-//     database.query('SELECT 1');
-// }, 5000);
-//
+setInterval(function () {
+    database.query('SELECT 1');
+}, 5000);
+
 
 
 
