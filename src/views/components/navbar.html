@@ -14,9 +14,13 @@
         <li ng-if="!loggedIn"><a href="#!/register"><i class="fa fa-pencil"></i>&nbsp;
 Register</a></li>
         <li ng-if="!loggedIn"><a href="#!/login"><i class="fa fa-user"></i>&nbsp;Login</a></li>
-        <li ng-if="loggedIn" style="padding-top:15px;padding-bottom:15px; color: #888">Hello, {{ user.username }}</li>
+        <li ng-if="loggedIn" style="padding-top:15px;padding-bottom:15px; color: #888">
+          <img class="avatar-small pull-left" style="transform : translateY(-5px);" ng-src="assets/avatars/{{ user.avatar }}" alt="">
+          Hello, {{ user.username }}
+        </li>
         <li ng-if="loggedIn"><a href="/" ng-click="logout()"><i class="fa fa-power-off"></i>&nbsp;Logout</a></li>
         <li ng-if="loggedIn"><a href="#!/profile"><i class="fa fa-user"></i>&nbsp;Profile</a></li>
+        <li ng-if="loggedIn"><a href="#!/settings"><i class="fa fa-cog"></i>&nbsp;Settings</a></li>
       </ul>
   </div>
 </nav>

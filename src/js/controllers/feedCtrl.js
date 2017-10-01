@@ -16,7 +16,7 @@ app.controller('feedCtrl', function($scope, $timeout){
           feed.comments = JSON.parse("[" + feed.comments + "]");
           feed.comments.forEach(function(comment){
             comment.body = decodeURI(comment.body);
-            comment.created_at = new Date(comment.created_at)
+            comment.created_at = new Date(comment.created_at.replace(/-/g, '/'))
           })
         }
       })

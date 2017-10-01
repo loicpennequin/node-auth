@@ -51,7 +51,11 @@ module.exports.isLoggedIn = function(req, res, next){
   if (!req.isAuthenticated())
     res.send({loggedIn : false})
   else{
-    let sql = `SELECT id,username FROM users WHERE id="${req.session.passport.user}" `;
+    let sql = `SELECT u.id, u.username, a.name AS avatar
+              FROM users AS u
+              LEFT JOIN avatars AS a
+              ON u.avatar_id = a.id
+              WHERE u.id="${req.session.passport.user}" `;
     let query = db.query(sql, (err, result)=>{
       if (err) throw err;
       res.json({loggedIn: true, data:result})

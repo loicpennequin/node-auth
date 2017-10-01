@@ -1,0 +1,29 @@
+<div ng-controller="settingsCtrl" id="top">
+
+
+  <div ng-include="'views/components/navbar.html'"></div>
+  <main class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 settings">
+        <div class="flash alert alert-success" ng-if="changeSuccess">
+          Changes saved.
+        </div>
+        <h1>Settings</h1>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4>Change your avatar</h4>
+          </div>
+          <div class="panel-body avatar-selector">
+            <img ng-repeat="a in avatars"
+                 ng-src="assets/avatars/{{ a.name }}"
+                 ng-class="{active: a.name === user.avatar}"
+                 ng-click="setAvatar(a)">
+            <button class="btn btn-primary" ng-click="saveAvatar()">Save</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <div ng-include="'views/components/footer.html'"></div>
+</div>

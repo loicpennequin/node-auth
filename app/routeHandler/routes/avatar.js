@@ -4,7 +4,7 @@ const db = require('../../../config/database.js');
 const passport = require('passport')
 
 module.exports.getAll = function(req,res,next){
-  let sql = `SELECT * from avatars`,
+  let sql = "SELECT * FROM avatars",
       query = db.query(sql, (err, result)=>{
         if (err) throw err;
 

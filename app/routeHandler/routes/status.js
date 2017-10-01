@@ -21,9 +21,10 @@ module.exports.getFeed = function(req, res, next){
   let sql = `
   SELECT
     s.id, s.body, s.created_at,
-    GROUP_CONCAT( '{"id" : "', c.id, '", "author" : "', uc.username, '", "body" : "',  c.body, '", "created_at" : "', c.created_at, '"}' SEPARATOR ','
+    GROUP_CONCAT( '{"id" : "', c.id, '", "avatar" : "', ac.name, '", "author" : "', uc.username, '", "body" : "',  c.body, '", "created_at" : "', c.created_at, '"}' SEPARATOR ','
     ) AS comments,
-    u.username
+    u.username,
+    a.name AS avatar
   FROM status as s
     LEFT JOIN users AS u
       ON s.user_id = u.id
@@ -31,6 +32,10 @@ module.exports.getFeed = function(req, res, next){
       ON c.status_id = s.id
     LEFT JOIN users AS uc
       ON c.user_id = uc.id
+    LEFT JOIN avatars as a
+      ON u.avatar_id=a.id
+    LEFT JOIN avatars as ac
+      ON uc.avatar_id = ac.id
   GROUP BY s.id
   ORDER BY s.created_at DESC
   LIMIT 10
@@ -55,7 +60,8 @@ module.exports.add = function(req, res, next){
         s.id, s.body, s.created_at,
         GROUP_CONCAT( '{"id" : "', c.id, '", "author" : "', uc.username, '", "body" : "',  c.body, '", "created_at" : "', c.created_at, '"}' SEPARATOR ','
         ) AS comments,
-        u.username
+        u.username,
+        a.name AS avatar
       FROM status as s
         LEFT JOIN users AS u
           ON s.user_id = u.id
@@ -63,6 +69,8 @@ module.exports.add = function(req, res, next){
           ON c.status_id = s.id
         LEFT JOIN users AS uc
           ON c.user_id = uc.id
+        LEFT JOIN avatars as a
+          ON u.avatar_id=a.id
       WHERE s.id=${result.insertId}
       GROUP BY s.id
       `

@@ -1,4 +1,4 @@
-app.controller('securedViewCtrl', function($scope, $location, authFactory){
+app.controller('securedViewCtrl', function($scope, $location, $http, $q, authFactory, httpFactory){
   authFactory.isLoggedIn()
   .then(function(response){
     if (response.data.loggedIn === true){

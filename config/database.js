@@ -5,6 +5,7 @@ const mysql=require('mysql');
 /*  =============================================================================
     Database config
     ============================================================================= */
+
 let database = mysql.createConnection({
   host : process.env.DB_HOST,
   user : process.env.DB_USER,
@@ -22,10 +23,10 @@ database.connect((error)=>{
     console.log('Connection to MySQL successful...')
 })
 
-setInterval(function () {
-    database.query('SELECT 1');
-}, 5000);
-
+// setInterval(function () {
+//     database.query('SELECT 1');
+// }, 5000);
+//
 
 
 

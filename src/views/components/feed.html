@@ -3,7 +3,12 @@
   <div class="panel panel-default" ng-repeat="status in feed | orderBy: '-created_at'">
 
     <div class="panel-heading">
-      <h4><a href="#">{{ status.username }}</a> posted a status</span></h4>
+      <h4>
+        <a href="#">
+          <img class="avatar" ng-src="assets/avatars/{{ status.avatar }}" alt="avatar">
+          &nbsp;&nbsp;{{ status.username }}
+        </a> posted a status</span>
+      </h4>
       <span class=" status-date">{{status.created_at | date : 'MMM dd, H:mm' }}</span>
     </div>
 
@@ -36,13 +41,14 @@
       <div ng-if="showComments" >
         <div class="comment" ng-repeat="c in status.comments" | orderBy: '-created_at'>
           <h4>
+            <img ng-src="assets/avatars/{{ c.avatar }}" class="avatar pulled-left">
             {{ c.author }}
             <button class="text-danger pull-right delete-comment"
                     ng-if="user.username === c.author "
                     ng-click="deleteComment(c.id)">x</button>
           </h4>
           <div class='well'>{{ c.body }}</div>
-          <div class="pull-right">{{ c.created_at | date : 'dd/MM/yyyy,H:mm' }}</div>
+          <div class="pull-right">{{ c.created_at | date : 'dd/MM/yyyy, H:mm' }}</div>
         </div>
       </div>
 

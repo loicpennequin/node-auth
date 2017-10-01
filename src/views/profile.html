@@ -3,15 +3,18 @@
   <main class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h1 class="text-center">Hello {{user.username}}</h1>
+        <h1>
+          <img ng-src="assets/avatars/{{user.avatar}}" class="pull-left avatar" alt="">
+          &nbsp;
+          {{user.username}}
+        </h1>
+        <br>
         <div class="well">
           <p>This is your profile page. This is a good starter point for a new app project and you can now start building your dashboard, profile page, whatever you want ! </p>
           <a href="https://github.com/loicpennequin/node-auth"><i class="fa fa-arrow-circle-o-right" aria-hidden="true">View source code on GitHub</i>
           </a>
         </div>
-        <div class="Select your avatar">
 
-        </div>
       </div>
     </div>
   </main>
